@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Toolkit</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet"/>
+</head>
+<body class="dashboard-body">
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>🛠️ Toolkit</h2>
+      <ul>
+        <li onclick="showTool('password')">🔐 Password Checker</li>
+        <li onclick="showTool('url')">🌐 URL Identifier</li>
+        <li onclick="showTool('base64')">🔁 Base64 Tool</li>
+        <li onclick="showTool('hash')">🧮 Hash Generator</li>
+        <li onclick="showTool('stego')">🖼️ Steganography</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Password Tool -->
+      <section id="password" class="tool-section active">
+        <h2>🔐 Password Strength Checker</h2>
+        <input type="password" id="passwordInput" placeholder="Enter password..." />
+        <p id="strengthText">Strength: <span>—</span></p>
+      </section>
+
+      <!-- URL Tool -->
+      <section id="url" class="tool-section">
+        <h2>🌐 Fake URL Identifier</h2>
+        <input type="text" id="urlInput" placeholder="e.g., http://example.com" />
+        <button onclick="checkURL()">Check URL</button>
+        <p id="urlResult">Result: <span>—</span></p>
+      </section>
+
+      <!-- Base64 Tool -->
+      <section id="base64" class="tool-section">
+        <h2>🔁 Base64 Encoder / Decoder</h2>
+        <select id="base64Mode">
+          <option value="encode">Encode</option>
+          <option value="decode">Decode</option>
+        </select>
+        <textarea id="base64Input" rows="4" placeholder="Enter text..."></textarea>
+        <button onclick="handleBase64()">Convert</button>
+        <textarea id="base64Output" rows="4" readonly></textarea>
+      </section>
+
+      <!-- Hash Generator -->
+      <section id="hash" class="tool-section">
+        <h2>🧮 Hash Generator</h2>
+        <select id="hashAlgorithm">
+          <option value="md5">MD5</option>
+          <option value="sha1">SHA-1</option>
+          <option value="sha256">SHA-256</option>
+        </select>
+        <textarea id="hashInput" rows="4" placeholder="Enter text to hash..."></textarea>
+        <button onclick="generateHash()">Generate</button>
+        <textarea id="hashOutput" rows="4" readonly></textarea>
+      </section>
+
+      <!-- Steganography Tool -->
+      <section id="stego" class="tool-section">
+        <h2>🖼️ Steganography</h2>
+        <label>Upload Image:</label>
+        <input type="file" id="stegoImageInput" accept="image/*" />
+        <textarea id="stegoMessage" rows="3" placeholder="Enter hidden message..."></textarea>
+        <div class="button-group">
+          <button onclick="encodeStego()">Hide Message</button>
+          <button onclick="decodeStego()">Extract Message</button>
+        </div>
+        <canvas id="stegoCanvas" style="display: none;"></canvas>
+        <textarea id="stegoOutput" rows="3" readonly placeholder="Decoded message..."></textarea>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="scripts/script.js"></script>
+  <script src="tools/password.js"></script>
+  <script src="tools/url-checker.js"></script>
+  <script src="tools/base64.js"></script>
+  <script src="tools/hash.js"></script>
+  <script src="tools/steganography.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+  <!-- Auto-show default tool on page load -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      showTool('password'); // Auto-load Password Checker
+    });
+  </script>
+</body>
+</html>
